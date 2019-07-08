@@ -31,7 +31,6 @@ $( document ).ready(function() {
 				$('#errorModel').modal('show');
 			},
 			complete: function(response){
-
 				isSpinner(false);
 			}
 
