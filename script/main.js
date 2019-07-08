@@ -69,13 +69,13 @@ $( document ).ready(function() {
 
 				modal.find('.modal-body').html('Please fill in all the blanks');
 				modal.find('.modal-title ').html('Error');
-				$('.modal-footer .btn-primary').css('visibility', 'hidden');
+				$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
 				modal.modal('show');
 			}
 			else{
 				modal.find('.modal-body').html('Are you sure?');
 				modal.find('.modal-title ').html('Confirmation');
-				$('.modal-footer .btn-primary').css('visibility', 'visible');
+				$('.modal-footer .btn-custom-blue').css('visibility', 'visible');
 				modal.modal('show');
 			}
 
@@ -106,7 +106,7 @@ $( document ).ready(function() {
 				error: function (xhr, status) {
 					modal.find('.modal-body').html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
 					modal.find('.modal-title ').html('Error');
-					$('.modal-footer .btn-primary').css('visibility', 'hidden');
+					$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
 					modal.modal('show');
 					isSpinner(false);
 				},
