@@ -123,7 +123,6 @@ $( document ).ready(function() {
 
 function onClick_likeBtn(id){
 
-	isSpinner(true);
 	var like_count = $("#likeCount_"+id).html();
 	var isLike = ($("#likeBtn_"+ id).hasClass("clicked"));
 	var newLikeCount = (isLike)?parseInt(like_count)-1:parseInt(like_count)+1;
@@ -143,10 +142,6 @@ function onClick_likeBtn(id){
 		error: function (xhr, status) {
 			$( "#testimony-body" ).html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
 			$('#errorModel').modal('show');
-		},
-		complete: function(){
-
-			isSpinner(false);
 		}
 	});
 }
