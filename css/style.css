@@ -31,8 +31,32 @@
   content: "\e901";
 }
 
-
 .blue-bg{background-color: #172D5B; }
+
+.btn-custom-blue {
+    color: #fff;
+    background-color: #172D5B;
+    border-color: #172D5B;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #172D5B;
+    border-color: #172D5B;
+}
+
+.page-link{
+  color:#172D5B;
+}
+
+.page-item :hover{
+  color:#172D5B;
+}
+
+.dropdown-menu > a:hover {
+  color: var(--success);
+}
 
 .nav-tabs .nav-link.active {
     color: #212529;
