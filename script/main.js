@@ -100,7 +100,7 @@ $( document ).ready(function() {
 				contentType: 'application/json',
 				success: function (response) {
 					isSpinner(false);
-					window.location="/hopeUni-Testimony/nyc/#";
+					window.location="index";
 				},
 				error: function (xhr, status) {
 					modal.find('.modal-body').html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
@@ -201,15 +201,6 @@ function onClickRefreshTestimonies(total_post_count, to_go_page){
 
 }
 
-function isSpinner( isload ){
-	if( $("#loading_window").css('visibility') == 'hidden' && isload){
-		$("#loading_window").css('visibility', 'visible');
-	}
-	else if( $("#loading_window").css('visibility') == 'visible' && !isload){
-		$("#loading_window").css('visibility', 'hidden');
-	}
-}
-
 function pagination(total_post_count){
 	var pages = Math.ceil(total_post_count/total_post_per_page);
 	var i = (current_page==1)?1:(current_page==pages && pages > 2)?current_page-2:current_page-1;
@@ -233,4 +224,3 @@ function pagination(total_post_count){
 					        +'</li>');
 
 }
-
