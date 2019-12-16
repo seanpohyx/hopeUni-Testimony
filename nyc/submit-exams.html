@@ -10,7 +10,10 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../lib/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../lib/css/bootstrap-tagsinput.css">
+  <!-- <link rel="stylesheet" href="../lib/css/typeahead.css"> -->
   <!-- my css -->
+  <link rel="stylesheet" type="text/css" href="../css/typeahead.css">
   <link rel="stylesheet" type="text/css" href="../css/style.css">
 
   <title>NYC</title>
@@ -24,10 +27,10 @@
   </div>
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 text-white box-shadow blue-bg">
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-white" href="index">Testimonies Feeds</a>
-        <a class="p-2 text-white" href="share-a-testimony">Share a Testimony</a>
-        <a class="p-2 text-white" href="#">Submit Exams Schedule</a>
-        <a class="p-2 text-white" href="exam-main">Exam Wall</a>
+      <a class="p-2 text-white" href="index">Testimonies Feeds</a>
+      <a class="p-2 text-white" href="share-a-testimony">Share a Testimony</a>
+      <a class="p-2 text-white" href="#">Submit Exams Schedule</a>
+      <a class="p-2 text-white" href="exam-main">Exam Wall</a>
     </nav>
   </div>
 
@@ -56,12 +59,19 @@
     </div>
 
     <div class="input-group mb-3 col-md-12">
-      <div class="input-group-prepend">
+      <div id="course_input_div" class=" input-group-prepend w-100">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Module</span>
+        </div>
+        <input id="course_search" type="text" value="" data-role="tagsinput" placeholder="Module" class="form-control">
+      </div>
+
+      <!-- <div class="input-group-prepend">
         <label class="input-group-text" for="course_code_SelectInput">Course Code</label>
       </div>
       <select class="custom-select" id="course_code_SelectInput">
         <option value="0" selected>Choose...</option>
-      </select>
+      </select> -->
     </div>
 
     <div class="input-group mb-3 col-md-12">
@@ -110,10 +120,12 @@
   <!-- jQuery first, then Bootstrap JS -->
   <script src="../lib/script/jquery-3.2.1.js"></script>
   <script src="../lib/script/bootstrap.min.js"></script>
-
+  <script src="../lib/script/bootstrap-tagsinput.js"></script>
+  <script src="../lib/script/typeahead.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script> -->
   <!-- main JavaScript -->
   <script src="../script/controller/submit_exams.js?version=1.0"></script>
-    <script src="../script/util/spinner.js?version=1.0"></script>
+  <script src="../script/util/spinner.js?version=1.0"></script>
   <script src="../script/values/course_code_mapping.js?version=1.0"></script>
   <!-- assets JavaScript -->
   <script src="campus.js"></script>

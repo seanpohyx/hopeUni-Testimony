@@ -105,3 +105,6 @@
   color: #dc3545!important;
 }
 
+ul {
+  list-style-type: none;
+}
