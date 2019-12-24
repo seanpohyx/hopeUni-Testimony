@@ -24,8 +24,8 @@
     </div>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 text-white box-shadow blue-bg">
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-white" href="index">Testimonies Feeds</a>
-        <a class="p-2 text-white" href="#">Share a Testimony</a>
+        <a class="p-2 text-white" href="index">NYC Feeds</a>
+        <a class="p-2 text-white" href="#">New Post</a>
         <a class="p-2 text-white" href="submit-exams">Submit Exams Schedule</a>
         <a class="p-2 text-white" href="exam-main">Exam Wall</a>
       </nav>
@@ -33,17 +33,45 @@
 
     <section class="jumbotron-fluid jumbotron text-center blue-bg text-white">
       <div class="container ">
-        <h1 class="jumbotron-heading">Hope NS Testimony</h1>
-        <p class="lead text-white">"whatever you do, do it all for the glory of God." <br> -1 Corinthians 10:31</p>
+        <h1 class="jumbotron-heading">Hope NYC</h1>
+        <p class="lead text-white">Choose to build, share your worries or share what God is doing in your life</p>
       </div>
     </section>
 
     <section class="container mb-3">
       <div class="input-group mb-3 col-md-12">
         <div class="input-group-prepend">
+          <label class="input-group-text" for="type-grpselectInput">Type of post</label>
+        </div>
+        <select class="custom-select" id="type-grpselectInput">
+          <option value="NONE" selected>Choose...</option>
+          <option value="TESTIMONY">TESTIMONY</option>
+          <option value="PRAYER-REQUEST">PRAYER REQUEST</option>
+          <option value="AFFIRMATION">AFFIRMATION</option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3 col-md-12">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Title</span>
+        </div>
+        <input id="titleTB" type="text" class="form-control" placeholder="Title of your post" aria-label="Title" aria-describedby="basic-addon1">
+      </div>
+
+      <div class="input-group mb-3 col-md-12">
+        <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">Name</span>
         </div>
         <input id="nameTB" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">
+      </div>
+      <div id="display-recipient" class="mb-3 col-md-12 display-none">
+        <p><small>Recipient is a text, input would be duplicated. <br>Eg:<span class="text-muted">"sean"</span> it would show "(your name) affirms <span class="text-muted">sean</span>.<br>Eg:<span class="text-muted">"sean, tom and jake"</span>, it would show "(your name) affirms <span class="text-muted">sean, tom and jake.</span><small></p>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Recipient(s)</span>
+          </div>
+          <input id="recipientTB" type="text" class="form-control" placeholder="Who do you want to affirm" aria-label="recipient" aria-describedby="basic-addon1">
+        </div>
       </div>
 
       <div class="input-group mb-3 col-md-12">
@@ -57,9 +85,9 @@
 
         <div class="input-group col-md-12 mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">Testimony</span>
+            <span class="input-group-text">Message</span>
           </div>
-          <textarea id="testimonyTA" class="form-control" aria-label="With textarea"></textarea>
+          <textarea id="messageTA" class="form-control" aria-label="With textarea"></textarea>
         </div>
 
         <div class="col-md-12 mb-3">
@@ -96,7 +124,7 @@
     <script src="../lib/script/bootstrap.min.js"></script>
 
     <!-- main JavaScript -->
-    <script src="../script/controller/submit_testimony.js?version=1.0"></script>
+    <script src="../script/controller/submit_post.js?version=1.0"></script>
     <script src="../script/util/spinner.js?version=1.0"></script>
     <!-- assets JavaScript -->
     <script src="campus.js"></script>

@@ -1,3 +1,4 @@
+//https://wis.ntu.edu.sg/pls/webexe/exam_timetable_und.Get_detail
 const course_code_mapping = {
 	AAQ10A: {datetime: "20/11/2019 13:0", course_name: "PRINCIPLES OF NUTRITION", place: "NIE"},
 	AGQ28B: {datetime: "21/11/2019 09:0", course_name: "EVERYDAY SCIENCE IN FOODS", place: "NIE"},
@@ -1158,3 +1159,35 @@ const course_code_json = [{"course_code":"AAQ10A", "datetime":"20/11/2019 13:00"
  {"course_code":"MS1016", "datetime":"05/12/2019 13:00", "course_name":"THERMODYNAMICS OF MATERIALS", "place":"HALL A"},
  {"course_code":"MS4631", "datetime":"05/12/2019 13:00", "course_name":"CORROSION ENGINEERING", "place":"HALL A"}
  ]
+
+ const venue_mapping = {
+	"CBE SR1" : { place_id: 10000 },
+	"CE MTG RM" : { place_id: 10001 },
+	"CEE SR A" : { place_id: 10002 },
+	"HALL A" : { place_id: 10003 },
+	"HALL A & B" : { place_id: 10004 },
+	"HALL B" : { place_id: 10005 },
+	"HALL C" : { place_id: 10006 },
+	"HALL D" : { place_id: 10007 },
+	"HALL D & E" : { place_id: 10008 },
+	"HALL D & F" : { place_id: 10009 },
+	"HALL D,F & W" : { place_id: 10010 },
+	"HALL E" : { place_id: 10011 },
+	"HALL F" : { place_id: 10012 },
+	"HALL K" : { place_id: 10013 },
+	"HALL L" : { place_id: 10014 },
+	"HALL W" : { place_id: 10015 },
+	"HSS SR8" : { place_id: 10016 },
+	"NBS SR3" : { place_id: 10017 },
+	"NIE" : { place_id: 10018 },
+	"NIE5-01-04" : { place_id: 10019 },
+	"NIE7-TR708" : { place_id: 10020 },
+	"SA IT LAB1,SA IT LAB2 & FTR 3" : { place_id: 10021 },
+	"SBS-CR2" : { place_id: 10022 },
+	"SPS EX CR1" : { place_id: 10023 },
+	"TR+90" : { place_id: 10024 },
+	"TR+92" : { place_id: 10025 },
+	"TR102" : { place_id: 10026 },
+	"TR103" : { place_id: 10027 },
+	"TSN PCLAB" : { place_id: 10028 },
+}

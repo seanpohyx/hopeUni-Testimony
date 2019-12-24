@@ -24,8 +24,8 @@
     </div>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 text-white box-shadow blue-bg">
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-white" href="index">Testimonies Feeds</a>
-        <a class="p-2 text-white" href="share-a-testimony">Share a Testimony</a>
+        <a class="p-2 text-white" href="index">NYC Feeds</a>
+        <a class="p-2 text-white" href="new-post">New Post</a>
         <a class="p-2 text-white" href="submit-exams">Submit Exams Schedule</a>
         <a class="p-2 text-white" href="#">Exam Wall</a>
       </nav>
@@ -40,7 +40,71 @@
 
     <section>
       <div id="exam-content" class="container row mx-auto">
-        <div class="card mb-3 col-md-12">
+        <div class ="table-responsive">
+          <p class="mb-0 ml-3">29/12/19</p>
+          <table class="table borderless font-10">
+            <thead>
+              <tr class="shadow-sm p-3 mb-5 bg-white rounded grey-color">
+                <th scope="col">Time</th>
+                <th scope="col">Examinee</th>
+                <th scope="col">Venue</th>
+                <th scope="col">Prayer Warrior</th>
+                <th scope="col">LG</th>
+                <th scope="col">Course</th>
+                <th scope="col">Contact No</th>
+                <th scope="col">Special Request</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="shadow-sm p-3 mb-5 bg-white rounded">
+                <td>09:00</td>
+                <td>Mark</td>
+                <td>HALL A</td>
+                <td>Sean</td>
+                <td>NYC 3</td>
+                <td>Algo [CZ2001]</td>
+                <td>92738932</td>
+                <td>please remember my seat number for me</td>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle no-arrow" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v grey-color"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Add Prayer Warrior</a>
+                      <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="shadow-sm p-3 mb-5 bg-white rounded">
+                <td>09:00</td>
+                <td>tom</td>
+                <td>HALL A</td>
+                <td>boi</td>
+                <td>NYC 3</td>
+                <td>Algo [CZ2001]</td>
+                <td>92738932</td>
+                <td>please remember my seat number for me</td>
+                <td>
+                  
+                  <div class="dropdown">
+                    <button class="btn dropdown-toggle no-arrow" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v grey-color"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" href="#">Add Prayer Warrior</a>
+                      <a class="dropdown-item" href="#">Delete</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+
+       <!--  <div class="card ">
           <div class="card-header">
             29/12/19 1am
           </div>
@@ -120,12 +184,12 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> -->
         
       </div>
     </section>
 
-    <<!-- nav  id="page-nav" aria-label="Page navigation example" class="d-flex justify-content-center">
+    <!--<nav  id="page-nav" aria-label="Page navigation example" class="d-flex justify-content-center">
       <ul id="page-index" class="pagination">
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Previous">
@@ -164,7 +228,11 @@
 
     <!-- jQuery first, then Bootstrap JS -->
     <script src="../lib/script/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="../lib/script/bootstrap.min.js"></script>
+
+    <!-- font aweseome -->
+    <script src="https://kit.fontawesome.com/6a72c251b6.js" crossorigin="anonymous"></script>
 
     <!-- Main JavaScript -->
     <script src="../script/controller/exam_main.js?version=1.0"></script>

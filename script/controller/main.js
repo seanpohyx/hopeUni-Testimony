@@ -4,7 +4,7 @@ var current_page = 1;
 $( document ).ready(function() {
 
 	$.ajax({
-		url: api_link+"api/testimonies_get_count/" + campus_id,
+		url: api_link+"api/feeds_get_count/" + campus_id,
 		type: "GET",
 		crossDomain: true,
 		dataType: "json",
@@ -20,13 +20,13 @@ $( document ).ready(function() {
 			}
 			else{
 				//0 testimonies
-				$( "#testimony-body" ).html('<p>There are no testimonies currently.</p>');
+				$( "#feeds-body" ).html('<p>There are no post currently. Be the first!</p>');
 				isSpinner(false);
 			}
 
 		},
 		error: function (xhr, status) {
-			$( "#testimony-body" ).html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
+			$( "#feeds-body" ).html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
 			$('#errorModel').modal('show');
 		},
 		complete: function(response){
@@ -56,7 +56,7 @@ function onClick_likeBtn(id){
 
 		},
 		error: function (xhr, status) {
-			$( "#testimony-body" ).html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
+			$("#feeds-body" ).html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
 			$('#errorModel').modal('show');
 		}
 	});
@@ -69,7 +69,7 @@ function onClickRefreshTestimonies(total_post_count, to_go_page){
 	var offset = (to_go_page-1)*total_post_per_page;
 
 	$.ajax({
-		url: api_link+"api/testimonies/" + campus_id + "/"+offset+"/"+total_post_per_page,
+		url: api_link+"api/feeds/" + campus_id + "/"+offset+"/"+total_post_per_page,
 		type: "GET",
 		crossDomain: true,
 		dataType: "json",
@@ -81,22 +81,49 @@ function onClickRefreshTestimonies(total_post_count, to_go_page){
 			current_page = to_go_page;
 			pagination(total_post_count);
 
-			testimonies = response;
+			feeds = response;
 
-			$( "#testimony-body" ).html("");
+			var body = $( "#feeds-body" );
+			body.html("");
 
-			$.each(testimonies, function( index, value ) {
-				$( "#testimony-body" ).append('<div class="card-deck mb-3 col-md-12">'
+			$.each(feeds, function( index, value ) {
+
+				var msg = '<div class="card-deck mb-3 col-md-12">'
 					+'<div class="card mb-4 box-shadow">'
 					+'<div class="card-body">'
-					+'<h4 class="card-title pricing-card-title">'+ value.name.toUpperCase()+ '<small class="ml-5 text-muted">'+value.lg+'</small></h4>'
-					+'<p>'+value.testimony+'</p>'
-					+'<button id="likeBtn_'+value.id+'" type="button" class="btn icon-heart float-left '+ localStorage.getItem("likeBtn_"+value.id) +'"></button>'
-					+'<small id="likeCount_'+value.id+'" class="text-secondary float-left" style="padding: .375rem .75rem;"> '+value.likes_count+'</small>'
-					+'<small class="text-secondary float-right">'+value.date.substring(0, value.date.length - 7)+'</small>'
+					+'<h4 class="card-title pricing-card-title text-center">'+ value.title.toUpperCase() +'</h4>';
+
+
+				msg += (value.type != "AFFIRMATION")?'<h5 class="text-center pt-2">'+ value.author.toUpperCase() 
+					+'<small class="ml-3 text-muted">'+ value.lg +'</small>'
+					+'<small class="ml-3 text-muted">'+value.type+'</small></h5>':
+					'<h5 class="text-center pt-2 text-monospace"><small>'+ value.author.toUpperCase() 
+					+' AFFIRMS </small>' +value.recipients+'</h5>'
+              		+'<h5 class="text-center"><small class="ml-3 text-muted">'+value.lg+'</small>'
+              		+'<small class="ml-3 text-muted">'+value.type+'</small></h5>';
+
+
+				msg +='<p class="text-left py-2 px-5">'+value.message+'</p>'
+					+'<button id="likeBtn_'+value.id+'" type="button" class="pl-5 btn icon-heart float-left '+ localStorage.getItem("likeBtn_"+value.id) +'"></button>'
+					+'<small id="likeCount_'+value.id+'" class="text-secondary float-left" style="padding: .375rem .75rem;">'+ value.no_of_likes +'</small>'
+					+'<small class="pr-5 text-secondary float-right">'+ value.datetime +'</small>'
 					+'</div>'
 					+'</div>'
-					+'</div>');
+					+'</div>';
+
+				body.append(msg);
+
+				// body.append('<div class="card-deck mb-3 col-md-12">'
+				// 	+'<div class="card mb-4 box-shadow">'
+				// 	+'<div class="card-body">'
+				// 	+'<h4 class="card-title pricing-card-title">'+ value.name.toUpperCase()+ '<small class="ml-5 text-muted">'+value.lg+'</small></h4>'
+				// 	+'<p>'+value.testimony+'</p>'
+				// 	+'<button id="likeBtn_'+value.id+'" type="button" class="btn icon-heart float-left '+ localStorage.getItem("likeBtn_"+value.id) +'"></button>'
+				// 	+'<small id="likeCount_'+value.id+'" class="text-secondary float-left" style="padding: .375rem .75rem;"> '+value.likes_count+'</small>'
+				// 	+'<small class="text-secondary float-right">'+value.date.substring(0, value.date.length - 7)+'</small>'
+				// 	+'</div>'
+				// 	+'</div>'
+				// 	+'</div>');
 
 				$('#likeBtn_'+value.id).on('click',{
 					id: value.id
@@ -108,7 +135,7 @@ function onClickRefreshTestimonies(total_post_count, to_go_page){
 
 		},
 		error: function (xhr, status) {
-			$( "#testimony-body" ).html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
+			$( "#feeds-body" ).html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
 			$('#errorModel').modal('show');
 		},
 		complete: function(){

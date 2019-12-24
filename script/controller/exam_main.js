@@ -21,7 +21,7 @@ var data = {
 
 
 $( document ).ready(function() {
-	retrievePrayerWall();
+	//retrievePrayerWall();
 	isSpinner(false);
 });
 

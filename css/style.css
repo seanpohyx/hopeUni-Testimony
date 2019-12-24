@@ -100,7 +100,7 @@
   visibility: hidden;
 }
 
-#testimony-body .clicked:before{
+#feeds-body .clicked:before{
   content: "\e900";
   color: #dc3545!important;
 }
@@ -108,3 +108,30 @@
 ul {
   list-style-type: none;
 }
+
+.display-none{
+  display: none;
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+
+.borderless {
+  border-collapse:separate; 
+  border-spacing: 0 15px;
+}
+
+.borderless thead th {
+    vertical-align: bottom;
+    border: none;
+    font-weight: 500;
+}
+
+.font-10{font-size: 10pt;}
+.grey-color{color:#b2b4bb;}
+
+.no-arrow::after {
+    display:none;
+}
+
