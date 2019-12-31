@@ -7,26 +7,20 @@ $( document ).ready(function() {
 	var messageStr = $('#messageTA')[0];
 	var lgInt = $('#lg-grpselectInput')[0];
 	var type = $('#type-grpselectInput');
+	var lg = getLifegroupAjax();
 
-	$.ajax({
-		url: api_link+"api/lifegroup/" + campus_id,
-		type: "GET",
-		crossDomain: true,
-		async: false,
-		dataType: "json",
-		contentType: 'application/json',
-		success: function (response) {
-			$.each(response, function( index, value ) {
-				$("#lg-grpselectInput").append("<option value='"+value.id+"'>"+value.lg+"</option>");
-			})
-		},
-		error: function (xhr, status) {
-			modal.find('.modal-body').html('Please contact admin, unable to find lg data');
+	if(lg != null){
+		$.each(lg, function( index, value ) {
+			$("#lg-grpselectInput").append("<option value='"+value.id+"'>"+value.lg+"</option>");
+		})
+	}
+	else{
+		modal.find('.modal-body').html('Please contact admin, unable to find lg data');
 			modal.find('.modal-title ').html('Error');
 			$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
 			modal.modal('show');
-		}
-	});
+	}
+	isSpinner(false);
 
 	//the type of post chosen, determines recipient input to be displayed
 	type.change(function(){
@@ -77,29 +71,40 @@ $( document ).ready(function() {
 		if(type.val() == "AFFIRMATION")
 			jsonData["recipients"] = recipientTB.value;
 
-		console.log(jsonData)
+		var response = postNewFeeds(jsonData);
 
-		$.ajax({
-			url: api_link+"api/feeds",
-			type: "POST",
-			crossDomain: true,
-			async: false,
-			dataType: "json",
-			data: JSON.stringify( jsonData ),
-			contentType: 'application/json',
-			success: function (response) {
-				isSpinner(false);
-				window.location="index";
-			},
-			error: function (xhr, status) {
-				modal.find('.modal-body').html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
-				modal.find('.modal-title ').html('Error');
-				$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
-				modal.modal('show');
-				isSpinner(false);
-			},
+		if(response != null){
+			window.location="index";
+		}
+		else{
+			modal.find('.modal-body').html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+websiteFeedback+'">Report Bug</a></p>');
+			modal.find('.modal-title ').html('Error');
+			$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
+			modal.modal('show');			
+		}
+		isSpinner(false);
 
-		});
+		// $.ajax({
+		// 	url: feedsLink+"api/feeds",
+		// 	type: "POST",
+		// 	crossDomain: true,
+		// 	async: false,
+		// 	dataType: "json",
+		// 	data: JSON.stringify( jsonData ),
+		// 	contentType: 'application/json',
+		// 	success: function (response) {
+		// 		isSpinner(false);
+		// 		window.location="index";
+		// 	},
+		// 	error: function (xhr, status) {
+		// 		modal.find('.modal-body').html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+websiteFeedback+'">Report Bug</a></p>');
+		// 		modal.find('.modal-title ').html('Error');
+		// 		$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
+		// 		modal.modal('show');
+		// 		isSpinner(false);
+		// 	},
+
+		// });
 
 	});
 

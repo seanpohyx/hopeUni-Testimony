@@ -9,7 +9,7 @@ $( document ).ready(function() {
 	//var api_link = "";
 
 	var course_code_search = new Bloodhound({
-		local: course_code_json,
+		local: COURSECODEJSON,
 		datumTokenizer: Bloodhound.tokenizers.obj.whitespace("course_code","course_name"),
 		queryTokenizer: Bloodhound.tokenizers.whitespace
 	});
@@ -35,26 +35,41 @@ $( document ).ready(function() {
 	        return false
 	    }
 	});
-	
-	$.ajax({
-		url: api_link+"api/lifegroup/" + campus_id,
-		type: "GET",
-		crossDomain: true,
-		async: false,
-		dataType: "json",
-		contentType: 'application/json',
-		success: function (response) {
-			$.each(response, function( index, value ) {
-				$("#lg-grpselectInput").append("<option value='"+value.id+"'>"+value.lg+"</option>");
-			})
-		},
-		error: function (xhr, status) {
-			modal.find('.modal-body').html('Please contact admin, unable to find lg data');
+
+	var lg = getLifegroupAjax();
+
+	if(lg != null){
+		$.each(lg, function( index, value ) {
+			$("#lg-grpselectInput").append("<option value='"+value.id+"'>"+value.lg+"</option>");
+		})
+	}
+	else{
+		modal.find('.modal-body').html('Please contact admin, unable to find lg data');
 			modal.find('.modal-title ').html('Error');
 			$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
 			modal.modal('show');
-		}
-	});
+	}
+	isSpinner(false);
+	
+	// $.ajax({
+	// 	url: feedsLink+"api/lifegroup/" + campusId,
+	// 	type: "GET",
+	// 	crossDomain: true,
+	// 	async: false,
+	// 	dataType: "json",
+	// 	contentType: 'application/json',
+	// 	success: function (response) {
+	// 		$.each(response, function( index, value ) {
+	// 			$("#lg-grpselectInput").append("<option value='"+value.id+"'>"+value.lg+"</option>");
+	// 		})
+	// 	},
+	// 	error: function (xhr, status) {
+	// 		modal.find('.modal-body').html('Please contact admin, unable to find lg data');
+	// 		modal.find('.modal-title ').html('Error');
+	// 		$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
+	// 		modal.modal('show');
+	// 	}
+	// });
 
 	// Object.keys(course_code_mapping).forEach(function (item) {
 	// 	// console.log(item); // key
@@ -115,7 +130,7 @@ $( document ).ready(function() {
 		for(var i=0; i<courseCodeInput.length;i++){
 			json.push({
 				"datetime": courseCodeInput[i].datetime,
-			    "place": venue_mapping[courseCodeInput[i].place].place_id,
+			    "place": VENUEMAPPING[courseCodeInput[i].place].place_id,
 			    "name": nameStr.value,
 			    "lifegroup": parseInt(lgInt.value),
 			    "course_code": courseCodeInput[i].course_code,
@@ -124,30 +139,42 @@ $( document ).ready(function() {
 			    "request": specialRequestStr.value
 			});
 		}
-		console.log(json);
 
 		isSpinner(true);
-		$.ajax({
-				url: "https://hopenus-examtt-backend.herokuapp.com/batch_insert_exams/",
-				type: "POST",
-				crossDomain: true,
-				async: false,
-				dataType: "json",
-				data: JSON.stringify(json),
-				contentType: 'application/json',
-				success: function (response) {
-					isSpinner(false);
-					window.location="index";
-				},
-				error: function (xhr, status) {
-					modal.find('.modal-body').html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+website_feedback+'">Report Bug</a></p>');
-					modal.find('.modal-title ').html('Error');
-					$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
-					modal.modal('show');
-					isSpinner(false);
-				},
 
-			});
+		var response = postBatchExams(json);
+		if(response != null){
+			window.location="index";
+		}
+		else{
+			modal.find('.modal-body').html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+websiteFeedback+'">Report Bug</a></p>');
+			modal.find('.modal-title ').html('Error');
+			$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
+			modal.modal('show');
+		}
+		isSpinner(false);
+		
+		// $.ajax({
+		// 		url: "https://hopenus-examtt-backend.herokuapp.com/batch_insert_exams/",
+		// 		type: "POST",
+		// 		crossDomain: true,
+		// 		async: false,
+		// 		dataType: "json",
+		// 		data: JSON.stringify(json),
+		// 		contentType: 'application/json',
+		// 		success: function (response) {
+		// 			isSpinner(false);
+		// 			window.location="index";
+		// 		},
+		// 		error: function (xhr, status) {
+		// 			modal.find('.modal-body').html('<p>Sorry, there is a bug with the website, it will be fixed shortly. <a href="'+websiteFeedback+'">Report Bug</a></p>');
+		// 			modal.find('.modal-title ').html('Error');
+		// 			$('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
+		// 			modal.modal('show');
+		// 			isSpinner(false);
+		// 		},
+
+		// 	});
 
 	});
 

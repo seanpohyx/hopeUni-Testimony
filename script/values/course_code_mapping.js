@@ -1,5 +1,5 @@
 //https://wis.ntu.edu.sg/pls/webexe/exam_timetable_und.Get_detail
-const course_code_mapping = {
+const courseCodeMapping = {
 	AAQ10A: {datetime: "20/11/2019 13:0", course_name: "PRINCIPLES OF NUTRITION", place: "NIE"},
 	AGQ28B: {datetime: "21/11/2019 09:0", course_name: "EVERYDAY SCIENCE IN FOODS", place: "NIE"},
 	AC1103: {datetime: "22/11/2019 09:0", course_name: "ACCOUNTING I", place: "HALL A"},
@@ -580,7 +580,7 @@ const course_code_mapping = {
 	MS4631: {datetime: "5/12/2019 13:0", course_name: "CORROSION ENGINEERING", place: "HALL A"},
 }
 
-const course_code_json = [{"course_code":"AAQ10A", "datetime":"20/11/2019 13:00", "course_name":"PRINCIPLES OF NUTRITION", "place":"NIE"},
+const COURSECODEJSON = [{"course_code":"AAQ10A", "datetime":"20/11/2019 13:00", "course_name":"PRINCIPLES OF NUTRITION", "place":"NIE"},
  {"course_code":"AGQ28B", "datetime":"21/11/2019 09:00", "course_name":"EVERYDAY SCIENCE IN FOODS", "place":"NIE"},
  {"course_code":"AC1103", "datetime":"22/11/2019 09:00", "course_name":"ACCOUNTING I", "place":"HALL A"},
  {"course_code":"AD1101", "datetime":"22/11/2019 09:00", "course_name":"FINANCIAL ACCOUNTING", "place":"HALL F"},
@@ -1160,7 +1160,7 @@ const course_code_json = [{"course_code":"AAQ10A", "datetime":"20/11/2019 13:00"
  {"course_code":"MS4631", "datetime":"05/12/2019 13:00", "course_name":"CORROSION ENGINEERING", "place":"HALL A"}
  ]
 
- const venue_mapping = {
+ const VENUEMAPPING = {
 	"CBE SR1" : { place_id: 10000 },
 	"CE MTG RM" : { place_id: 10001 },
 	"CEE SR A" : { place_id: 10002 },
