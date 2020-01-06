@@ -18,12 +18,12 @@
   <body id="main-page">
     <div id="loading_window" class="d-flex justify-content-center">
       <div class="spinner-grow loader" role="status">
-        <p class="sr-only">Loading...</p>
+        <p class="sr-only">Your patience is making it faster...</p>
       </div>
-      <p class="loader mt-5">Give me a moment</p>
+      <p class="loader mt-5">Paiseh ah, i no money. A bit slow, so wait awhile</p>
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark blue-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark position-absolute">
       <!-- <a class="navbar-brand" href="#">Navbar</a> -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,25 +31,25 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">NYC Feeds <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">NYC <i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="new-post">New Post</a>
+            <a class="nav-link" href="new-post">New Post <i class="fas fa-edit"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="submit-exams">Submit Exams Schedule</a>
+            <a class="nav-link" href="submit-exams">Submit Exams <i class="fas fa-book-medical"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="exam-main">Exam Wall</a>
+            <a class="nav-link" href="exam-main">Exam Schedule <i class="far fa-calendar-alt"></i></a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <section class="jumbotron-fluid jumbotron text-center blue-bg text-white">
+    <section class="jumbotron-fluid jumbotron text-center nyc-bg text-white">
       <div class="container ">
-        <h1 class="jumbotron-heading">Hope NYC</h1>
-        <p class="lead text-white">Life updates</p>
+        <h1 class="jumbotron-heading mt-5">Hope NYC</h1>
+        <!-- <p class="lead text-white">Life updates</p> -->
       </div>
     </section>
 
@@ -145,6 +145,9 @@
     <!-- jQuery first, then Bootstrap JS -->
     <script src="../lib/script/jquery-3.2.1.js"></script>
     <script src="../lib/script/bootstrap.min.js"></script>
+
+    <!-- font aweseome -->
+    <script src="https://kit.fontawesome.com/6a72c251b6.js" crossorigin="anonymous"></script>
 
     <!-- Main JavaScript -->
     <script src="../script/controller/main.js?version=1.0"></script>

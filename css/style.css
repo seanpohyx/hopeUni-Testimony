@@ -33,6 +33,18 @@
 
 .blue-bg{background-color: #172D5B; }
 
+.nyc-bg{
+  background-image: url("../images/nycbg.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  height:400px;
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
+.navbar-inner {
+    background:transparent;
+}
+
 .btn-custom-blue {
     color: #fff;
     background-color: #172D5B;
@@ -55,7 +67,7 @@
 }
 
 .dropdown-menu > a:hover {
-  color: var(--success);
+  color: #b2b4bb;
 }
 
 .nav-tabs .nav-link.active {
@@ -134,3 +146,4 @@ ul {
 .no-arrow::after {
     display:none;
 }
+

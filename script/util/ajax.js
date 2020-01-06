@@ -166,3 +166,21 @@ function deletePrayerWarrior(dataArr){
 	else
 		return null;
 }
+
+function deleteExam(dataArr){
+	var res = $.ajax({
+		url: "https://hopenus-examtt-backend.herokuapp.com/batch_delete_exams/",
+		type: "POST",
+		crossDomain: true,
+		dataType: "json",
+		async: false,
+		timeout: 15000,
+		data : JSON.stringify(dataArr),
+		contentType: 'application/json'
+	});
+
+	if(res.status == 200 && res.responseJSON.error == undefined)
+		return res.responseJSON;
+	else
+		return null;
+}

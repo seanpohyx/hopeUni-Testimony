@@ -94,7 +94,7 @@ function generatePrayerWall(examObjArr){
       nextDate = examObjArr[i].date;
 
       cardStr += '<div class ="table-responsive">'
-      + '<p class="mb-0 ml-3">'+ examObjArr[i].date + '</p>'
+      + '<p class="mb-0 ml-3 font-weight-bold">'+ DateFormatter.getLongDate(examObjArr[i].date) + '</p>'
       + '<table class="table borderless font-10">'
       + '<thead>'
       + '<tr class="shadow-sm p-3 mb-5 bg-white rounded grey-color">'
@@ -111,7 +111,7 @@ function generatePrayerWall(examObjArr){
       + '<tbody>';
     }
 
-    var request = (examObjArr[i].request != undefined)?examObjArr[i].request:'NA';
+    var request = (examObjArr[i].request != undefined)?examObjArr[i].request:'-';
     cardStr += '<tr class="shadow-sm p-3 mb-5 bg-white rounded">'
     + '<td>'+ examObjArr[i].time +'</td>' //time
     + '<td>'+ examObjArr[i].examinee +'</td>' //examinee
@@ -120,7 +120,7 @@ function generatePrayerWall(examObjArr){
     for(var j=0; j<examObjArr[i].prayerWarriorArr.length;j++){
       prayerWarrior += examObjArr[i].prayerWarriorArr[j].pwName;
       if(j != examObjArr[i].prayerWarriorArr.length-1)
-        prayerWarrior += ', ';
+        prayerWarrior += '<br>';
     }
     cardStr += '<td>'+ prayerWarrior +'</td>'; //prayer warrior
 
@@ -136,7 +136,7 @@ function generatePrayerWall(examObjArr){
     + '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">'
     + '<a class="dropdown-item" href="#" onclick="onClickAddPrayerWarrior('+ examObjArr[i].examId+')">Add Prayer Warrior</a>'
     + '<a class="dropdown-item" href="#" onclick="onClickDeletePrayerWarrior('+ examObjArr[i].examId+')">Remove Prayer Warrior</a>'
-    + '<a class="dropdown-item" href="#">Delete Exam</a>'
+    + '<a class="dropdown-item" href="#" onclick="onClickDeleteExam('+ examObjArr[i].examId+')">Delete my schedule</a>'
     + '</div>'
     + '</div>'
     + '</td>'
@@ -158,7 +158,6 @@ function generatePrayerWall(examObjArr){
 
 function onClickAddPrayerWarrior(examId){
 
-  var modal = $('#confirmationModal');
   var submitBtn = $('.modal-footer .btn-custom-blue');
   var msg = '<div class="input-group mb-3">'
         +'<div class="input-group-prepend">'
@@ -167,13 +166,10 @@ function onClickAddPrayerWarrior(examId){
         +'<input id="prayerwarriorTB" type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1">'
         +'</div>';
 
-  modal.find('.modal-body').html(msg);
-  modal.find('.modal-title ').html('Insert your Name');
-  $('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
-  modal.modal('show');
+  showModal(msg, 'Insert your Name', false);
 
   var nametb = $('#prayerwarriorTB');
-  $('#prayerwarriorTB').on("input", function(){
+  nametb.on("input", function(){
       //if input is not null
       if($(this).val() != '')
         submitBtn.css('visibility', 'visible');
@@ -193,9 +189,8 @@ function onClickAddPrayerWarrior(examId){
 
     if(response != null){
       //successful
-      modal.find('.modal-body').html("Your name has been added into the prayerwarrior list. Thanks for contributing.");
-      modal.find('.modal-title').html('Success');
-      submitBtn.css('visibility', 'hidden');
+
+      showModal("Your name has been added into the prayerwarrior list. Thanks for contributing.", 'Success', false);
       isSpinner(false);
 
       $('.modal-footer .btn-secondary').on('click',{
@@ -209,13 +204,10 @@ function onClickAddPrayerWarrior(examId){
           exam.prayerWarriorArr.push(new PrayerWarrior(response[0].prayer_warrior_id, response[0].name, response[0].contact));
           generatePrayerWall(objArr);
         }
-        });
+      });
     }
     else{
-
-      modal.find('.modal-body').html('<p>Sorry, there is an error, please try again later. <a href="'+websiteFeedback+'">Report Bug</a></p>');
-      modal.find('.modal-title ').html('Error');
-      submitBtn.css('visibility', 'hidden');
+      showModal('<p>Sorry, there is an error, please try again later. <a href="'+websiteFeedback+'">Report Bug</a></p>', 'Error', false);
       isSpinner(false);
     }
 
@@ -227,7 +219,6 @@ function onClickAddPrayerWarrior(examId){
 
 
 function onClickDeletePrayerWarrior(examId){
-  var modal = $('#confirmationModal');
   var submitBtn = $('.modal-footer .btn-custom-blue');
   var msg = '<p>Enter the name that is stored in the system</p>';
 
@@ -243,10 +234,7 @@ function onClickDeletePrayerWarrior(examId){
         +'</div>';
   }
 
-  modal.find('.modal-body').html(msg);
-  modal.find('.modal-title ').html('Insert your Name');
-  $('.modal-footer .btn-custom-blue').css('visibility', 'hidden');
-  modal.modal('show');
+  showModal(msg, 'Insert your Name', false);
 
   $("input[type='checkbox']").on("change", function(){
       //if input is not 0
@@ -262,7 +250,92 @@ function onClickDeletePrayerWarrior(examId){
     $.each($("input[type='checkbox']:checked"), function(){
         deleteIdArr.push(parseInt($(this).val()));
     });
-    
+
+
+    if(deletePrayerWarrior(deleteIdArr) != null){
+
+      showModal("Delete Successful", 'Success', false);
+      $('.modal-footer .btn-secondary').on('click',{
+      }, (event) => {
+        location.reload();
+      });
+
+      isSpinner(false);
+    }
+    else{
+      showModal('<p>Sorry, there is an error, please try again later. <a href="'+websiteFeedback+'">Report Bug</a></p>', 'Error', false);
+      isSpinner(false);
+
+    }
 
   });
+}
+
+function onClickDeleteExam(examId){
+
+  var exam = this.searchForExamId(examId, objArr);
+  var submitBtn = $('.modal-footer .btn-custom-blue');
+  
+  var msg ='<p>Enter "'+exam.courseName+'" to cancel.</p>'
+        +'<div class="input-group mb-3">'
+        +'<div class="input-group-prepend">'
+        +'<span class="input-group-text" id="basic-addon1">Module</span>'
+        +'</div>'
+        +'<input id="prayerwarriorTB" type="text" class="form-control" placeholder="Module Name" aria-label="Name" aria-describedby="basic-addon1">'
+        +'</div>';
+
+  showModal(msg, "Insert Module Name to Delete", false);
+
+  $('#prayerwarriorTB').on("input", function(){
+      //if input is not null
+      if($(this).val() != '')
+        submitBtn.css('visibility', 'visible');
+      else
+        submitBtn.css('visibility', 'hidden');
+  });
+
+
+  $('#submit').on('click',{
+  }, (event) => {
+
+    isSpinner(true);
+    if($('#prayerwarriorTB').val().toUpperCase() == exam.courseName.toUpperCase()){
+      var deleteIdArr = [];
+      deleteIdArr.push(parseInt(examId));
+      
+      if(deleteExam(deleteIdArr) != null){
+
+        showModal("Delete Successful", 'Success', false);
+        $('.modal-footer .btn-secondary').on('click',{
+        }, (event) => {
+          location.reload();
+        });
+
+        isSpinner(false);
+      }
+      else{
+        showModal('<p>Sorry, there is an error, please try again later. <a href="'+websiteFeedback+'">Report Bug</a></p>', 'Error', false);
+        isSpinner(false);
+      }
+
+    }
+
+  });
+
+}
+
+function showModal(msg, title, isDisplayBtn){
+
+  var submitBtn = $('.modal-footer .btn-custom-blue');
+  var modal = $('#confirmationModal');
+
+  modal.find('.modal-body').html(msg);
+  modal.find('.modal-title ').html(title);
+  if(isDisplayBtn)
+    submitBtn.css('visibility', 'visible');
+  else
+    submitBtn.css('visibility', 'hidden');
+
+  modal.modal('show');
+
 }
