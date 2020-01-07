@@ -116,22 +116,21 @@ function onClickRefreshTestimonies(total_post_count, to_go_page){
 				var msg = '<div class="card-deck mb-3 col-md-12">'
 					+'<div class="card mb-4 box-shadow">'
 					+'<div class="card-body">'
-					+'<h4 class="card-title pricing-card-title text-center">'+ value.title.toUpperCase() +'</h4>';
+					+'<h4 class="card-title briyaniBoldFont pricing-card-title text-center">'+ value.title.toUpperCase() +'</h4>';
 
 
-				msg += (value.type != "AFFIRMATION")?'<h5 class="text-center pt-2">'+ value.author.toUpperCase() 
-					+'<small class="ml-3 text-muted">'+ value.lg +'</small>'
-					+'<small class="ml-3 text-muted">'+value.type+'</small></h5>':
-					'<h5 class="text-center pt-2 text-monospace"><small>'+ value.author.toUpperCase() 
-					+' AFFIRMS </small>' +value.recipients+'</h5>'
-              		+'<h5 class="text-center"><small class="ml-3 text-muted">'+value.lg+'</small>'
+				msg += (value.type != "AFFIRMATION")?'<p class="text-center robotoFont pt-2">'+ value.author.toUpperCase() 
+					+'<span class="ml-3 ">'+ value.lg +'</span>'
+					+'<span class="ml-3 ">'+value.type+'</span></p>':
+					'<p class="text-center pt-2 text-monospace robotoFont">'+ value.author.toUpperCase() +'<small class="text-muted">'
+					+' AFFIRMS </small>' +value.recipients.toUpperCase()+'</p>'
+              		+'<h5 class="text-center robotoFont"><small class="ml-3 text-muted">'+value.lg+'</small>'
               		+'<small class="ml-3 text-muted">'+value.type+'</small></h5>';
 
-
-				msg +='<p class="text-left py-2 px-5">'+value.message+'</p>'
+				msg +='<p class="text-left robotoFont py-2 px-5">'+value.message+'</p>'
 					+'<button id="likeBtn_'+value.id+'" type="button" class="pl-5 btn icon-heart float-left '+ localStorage.getItem("likeBtn_"+value.id) +'"></button>'
-					+'<small id="likeCount_'+value.id+'" class="text-secondary float-left" style="padding: .375rem .75rem;">'+ value.no_of_likes +'</small>'
-					+'<small class="pr-5 text-secondary float-right">'+ value.datetime +'</small>'
+					+'<small id="likeCount_'+value.id+'" class="text-secondary robotoFont float-left" style="padding: .375rem .75rem;">'+ value.no_of_likes +'</small>'
+					+'<small class="pr-5 text-secondary robotoFont float-right">'+ value.datetime +'</small>'
 					+'</div>'
 					+'</div>'
 					+'</div>';

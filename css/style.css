@@ -9,6 +9,21 @@
   font-style: normal;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Biryani:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+@font-face {
+  font-family: 'GBFont';
+  src: url('fonts/Gloss_And_Bloom.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  
+  font-family: 'Roboto', sans-serif;
+}
+
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
@@ -22,6 +37,25 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.GBFont{
+  font-family: 'GBFont';
+  font-weight:normal;
+  font-style:normal;
+}
+
+.briyaniFont{
+  font-family: 'Biryani', sans-serif;
+}
+
+.briyaniBoldFont{
+  font-family: 'Biryani', sans-serif;
+  font-weight: 700;
+}
+
+.robotoFont{
+  font-family: 'Roboto', sans-serif;
 }
 
 .icon-heart-clicked:before {
@@ -141,6 +175,8 @@ ul {
 }
 
 .font-10{font-size: 10pt;}
+.font-35{font-size: 35pt;}
+.mt-10{margin-top: 6rem!important;}
 .grey-color{color:#b2b4bb;}
 
 .no-arrow::after {
