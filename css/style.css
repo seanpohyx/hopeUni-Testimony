@@ -20,7 +20,7 @@
 }
 
 body{
-  
+
   font-family: 'Roboto', sans-serif;
 }
 
@@ -47,6 +47,7 @@ body{
 
 .briyaniFont{
   font-family: 'Biryani', sans-serif;
+  font-weight: 400;
 }
 
 .briyaniBoldFont{
@@ -67,6 +68,8 @@ body{
 
 .blue-bg{background-color: #172D5B; }
 
+.maroon-bg{background-color: #bf2324; }
+
 .nyc-bg{
   background-image: url("../images/nycbg.jpg");
   background-position: center; /* Center the image */
@@ -79,29 +82,30 @@ body{
     background:transparent;
 }
 
-.btn-custom-blue {
+.btn-custom-maroon {
     color: #fff;
-    background-color: #172D5B;
-    border-color: #172D5B;
+    background-color: #bf2324;
+    border-color: #bf2324;
 }
 
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #172D5B;
-    border-color: #172D5B;
+    background-color: #bf2324;
+    border-color: #bf2324;
 }
 
 .page-link{
-  color:#172D5B;
+  color:#bf2324;
 }
 
 .page-item :hover{
-  color:#172D5B;
+  color:#bf2324;
 }
 
 .dropdown-menu > a:hover {
-  color: #b2b4bb;
+  color: #fff;
+  background-color: #bf2324;
 }
 
 .nav-tabs .nav-link.active {
@@ -127,7 +131,7 @@ body{
 
 #loading_window{
   opacity:    1; 
-  background: #172D5B; 
+  background: #bf2324; 
   width:      100%;
   height:     100%; 
   z-index:    10;

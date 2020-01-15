@@ -16,8 +16,6 @@ var vis = (function(){
         return !document[stateKey];
     }
 })();
-
-
 var objArr = [];
 
 $( document ).ready(function() {
@@ -39,7 +37,7 @@ $( document ).ready(function() {
 
   vis(function(){
     var show = vis() ? 'Visible' : 'Not visible';
-    //console.log(show);
+    console.log(show);
   });
 
 });
@@ -94,15 +92,15 @@ function generatePrayerWall(examObjArr){
       nextDate = examObjArr[i].date;
 
       cardStr += '<div class ="table-responsive">'
-      + '<p class="mb-0 ml-3 font-weight-bold">'+ DateFormatter.getLongDate(examObjArr[i].date) + '</p>'
+      + '<p class="mb-0 ml-3 briyaniBoldFont">'+ DateFormatter.getLongDate(examObjArr[i].date) + '</p>'
       + '<table class="table borderless font-10">'
       + '<thead>'
-      + '<tr class="shadow-sm p-3 mb-5 bg-white rounded grey-color">'
+      + '<tr class="shadow-sm p-3 mb-5 bg-white rounded grey-color briyaniBoldFont">'
       + '<th scope="col">Time</th>'
       + '<th scope="col">Examinee</th>'
       + '<th scope="col">Venue</th>'
       + '<th scope="col">Prayer Warrior</th>'
-      + '<th scope="col">LG</th>'
+      + '<th scope="col">Lg</th>'
       + '<th scope="col">Course</th>'
       + '<th scope="col">Contact No</th>'
       + '<th scope="col">Special Request</th>'
@@ -125,7 +123,7 @@ function generatePrayerWall(examObjArr){
     cardStr += '<td>'+ prayerWarrior +'</td>'; //prayer warrior
 
     cardStr += '<td>'+ examObjArr[i].lg +'</td>' //lg
-    + '<td>'+ examObjArr[i].courseName + '</td>' //course [course index]
+    + '<td>'+ examObjArr[i].courseName.toLowerCase() + '</td>' //course [course index]
     + '<td>'+ examObjArr[i].eContactNo +'</td>' //number
     + '<td>'+ request +'</td>' //request
     + '<td>'
